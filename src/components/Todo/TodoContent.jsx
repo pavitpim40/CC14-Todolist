@@ -9,6 +9,7 @@ export function TodoContent() {
     // # Logic
     const [todos, setTodos] = useState(mockData);
 
+    // ADD-TODO
     const handleAddTodo = (newTask) => {
         // มี new todo
         let newTodoObj = { id: uuidv4(), task: newTask, status: false, due_date: '' };
@@ -22,12 +23,33 @@ export function TodoContent() {
         setTodos(currentState=> [newTodoObj,...currentState])
     };
 
+    // UPDATE-TODO
+    const handleEditTodo = (todoId,newTask) => {
+        console.log("##",todoId,newTask)
+
+        // Modify Array 
+        // #1 FindIndex
+        const foundedIndex = todos.findIndex(todoObj=> todoObj.id === todoId)
+
+        // Not founded
+        if(foundedIndex == -1) return;
+
+        // Founded
+        const newTodos = [...todos]
+        // let oldTodoObj = newTodos[foundedIndex]
+        // oldTodoObj.task = newTask
+        newTodos[foundedIndex] = { ...newTodos[foundedIndex], task : newTask}
+        // { "id": 4, "task": "In congue. Etiam justo.", "status": false, "due_date": "2023-05-04" },
+        setTodos(newTodos)
+    }
+
+
     // # UI
     return (
         <main className='content'>
             <TodoHeader />
             <AddTodo  onAddTodo={handleAddTodo}/>
-            <TodoLists todos={todos} />
+            <TodoLists todos={todos}  onEditTodo={handleEditTodo}/>
         </main>
     );
 }
