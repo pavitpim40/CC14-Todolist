@@ -9,9 +9,9 @@ export function TodoContent() {
     // # Logic
     const [todos, setTodos] = useState(mockData);
 
-    const handleAddTodo = () => {
+    const handleAddTodo = (newTask) => {
         // มี new todo
-        let newTodoObj = { id: uuidv4(), task: 'DoHW', status: false, due_date: '' };
+        let newTodoObj = { id: uuidv4(), task: newTask, status: false, due_date: '' };
 
         // สร้าง state ใหม่
         // update state โดย new state
@@ -26,8 +26,7 @@ export function TodoContent() {
     return (
         <main className='content'>
             <TodoHeader />
-            <AddTodo />
-            <button onClick={handleAddTodo}>Test Add Todo</button>
+            <AddTodo  onAddTodo={handleAddTodo}/>
             <TodoLists todos={todos} />
         </main>
     );
