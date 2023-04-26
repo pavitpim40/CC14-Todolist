@@ -1,4 +1,5 @@
 import styles from './TodoHeader.module.scss';
+import {getFormattedDate} from '../../utils/DateUtils'
 
 // export function TodoHeader(props) {
 //     const now = new Date();
@@ -15,14 +16,12 @@ import styles from './TodoHeader.module.scss';
 // }
 
 export function TodoHeader({title}) {
-    const now = new Date();
-    const options = { weekday: 'short', month: 'short', day: 'numeric' };
-    // console.log(now.toLocaleDateString('en-US',options))
+ 
 
     return (
         <div className={styles.header}>
             <h1>{title}</h1>
-            <p>{now.toLocaleDateString('en-US', options)}</p>
+            <p>{getFormattedDate(Date.now())}</p>
         </div>
     );
 }
