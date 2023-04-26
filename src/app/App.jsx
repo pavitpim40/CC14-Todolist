@@ -9,7 +9,8 @@ import { getSevenDayRange } from '../utils/DateUtils';
 
 function App() {
     const [todos, setTodos] = useState(allTodoMock);
-
+    const [filterList,setFilterList] = useState(allTodoMock)
+    
     // Filter Todo
     const handleFilterLists = (index) => {
         const [nowStr, nextSevenStr] = getSevenDayRange();
@@ -27,13 +28,14 @@ function App() {
             );
 
         setTodos(filteredTodo);
+        setFilterList(filteredTodo)
     };
 
     // Search Todo 
     const handleSearch = (searchText) => {
 
         
-        const newTodo = allTodoMock.filter((todoObj)=> todoObj.task.includes(searchText))
+        const newTodo = filterList.filter((todoObj)=> todoObj.task.includes(searchText))
         setTodos(newTodo)
 
     }
