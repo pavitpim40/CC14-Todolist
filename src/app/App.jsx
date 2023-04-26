@@ -35,7 +35,7 @@ function App() {
     const handleSearch = (searchText) => {
 
         
-        const newTodo = filterList.filter((todoObj)=> todoObj.task.includes(searchText))
+        const newTodo = filterList.filter((todoObj)=> todoObj.task.toLocaleLowerCase().includes(searchText.toLocaleLowerCase()))
         setTodos(newTodo)
 
     }
