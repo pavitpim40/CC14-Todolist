@@ -1,12 +1,12 @@
 import { TodoItem } from './TodoItem';
 
-export function TodoLists({ todos, onEditTodo, onDeleteTodo }) {
+export function TodoLists() {
 
  
     return (
         <ul>
-            {todos.map((todoObj) => (
-                <TodoItem key={todoObj.id} todo={todoObj} onEditTodo={onEditTodo} onDeleteTodo={onDeleteTodo}/>
+            {[].map((todoObj) => (
+                <TodoItem key={todoObj.id}/>
             ))}
         </ul>
     );

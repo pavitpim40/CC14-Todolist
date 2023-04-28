@@ -1,33 +1,19 @@
 import styles from './AddTodo.module.scss';
-import { useState } from 'react';
 import { TodoForm } from './TodoForm';
 
-export function AddTodo({setTodos,setFilterList}) {
+export function AddTodo() {
     // # Logic & State
-    const [isAddMode, setIsAddMode] = useState(false);
-
-
-
-    const handleClickAddTask = () => {
-        // console.log("Open form")
-        setIsAddMode(true)
-    }
 
     // # UI
     return (
         <>
-            {!isAddMode ? (
-                <div className={styles.add__todo} onClick={handleClickAddTask} >
+            {!true ? (
+                <div className={styles.add__todo}>
                     <span>+</span>
                     <h3>Add task</h3>
                 </div>
             ) : (
-                <TodoForm  
-                submitText="Add Task"
-                onSetIsShowForm={setIsAddMode}
-                setTodos={setTodos}
-                setFilterList={setFilterList}
-                />
+                <TodoForm submitText='Add Task' />
             )}
         </>
     );
