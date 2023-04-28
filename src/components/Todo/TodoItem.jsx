@@ -14,18 +14,24 @@ TodoItem.propTypes =  {
 
 //todoSchema :  {id:1, task: asdadsasdas, status : false, due_date : 2002-04-20}
 export function TodoItem({ todo, onEditTodo, onDeleteTodo }) {
-    //prop = { todo:{id:1 task : "AA"}, onEditTodo: fn1, onDeleteTodo: fn2 }
-    // let todo = prop.todo
-    // let onEditTodo = prop.onEditTodo
-    // #1 : Logic,State
-    // Check === DONE === todo.status == true
+
     const [isEdit, setIsEdit] = useState(false);
     // console.log(todo.id)
 
-    const handleToggleCheck = () => {
-        // setIsCheck(!isCheck);
-        // true ==> false , false ==> true
-        onEditTodo(todo.id, { status: !todo.status }); // handleEditTodo(todo.id, {status:!todo.status})
+    const updateTodoStatus = async () => {
+       
+        try {
+            // ส่ง Request 
+            let todoRequestObj = {...todo,status: !todo.status}
+            let response = await axios.put(`http://localhost:8080/todos/${todo.id}`,todoRequestObj)
+            let updatedTodo = response.data.todo
+            // sync state ใน react
+            onEditTodo(updatedTodo.id, {status : updatedTodo.status})
+        } catch (error) {
+            console.log(error.response.status)
+        }
+     
+        // onEditTodo(todo.id, { status: !todo.status }); // handleEditTodo(todo.id, {status:!todo.status})
     };
 
     const handleOpenEditMode = () => {
@@ -34,9 +40,9 @@ export function TodoItem({ todo, onEditTodo, onDeleteTodo }) {
     };
 
     const handleDeleteTodo = () => {
-        console.log('delete');
+      
         onDeleteTodo(todo.id);
-        // setTodos(currentTodos => currentTodos.filter(todoObj=> todoObj.id !== todo.id))
+
     };
 
     let checkboxStyle = todo.status ? styles.checkbox__icon__done : styles.checkbox__icon;
@@ -46,7 +52,7 @@ export function TodoItem({ todo, onEditTodo, onDeleteTodo }) {
         <>
             {!isEdit ? (
                 <li className={styles.todo__item__container}>
-                    <div className={styles.checkbox__container} onClick={handleToggleCheck}>
+                    <div className={styles.checkbox__container} onClick={updateTodoStatus}>
                         <HiCheck className={checkboxStyle} />
                     </div>
 

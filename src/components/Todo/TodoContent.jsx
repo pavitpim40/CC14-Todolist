@@ -14,23 +14,18 @@ export function TodoContent({todos,setTodos,setFilterList}) {
     // updateValue = {task: "Newtask", status : false}
     const handleEditTodo = (todoId,updateObj) => {
 
-        // Modify Array 
-        // #1 FindIndex
+        console.log(todoId)
         const foundedIndex = todos.findIndex(todoObj=> todoObj.id === todoId)
-        // Not founded
+        console.log(foundedIndex)
         if(foundedIndex == -1) return;
-        // Founded
         const newTodos = [...todos]
-        // let oldTodoObj = newTodos[foundedIndex]
-        // oldTodoObj.task = newTask
-
+      
         newTodos[foundedIndex] = { ...newTodos[foundedIndex], ...updateObj } // ...{task: "Newtask", status : false}
         newTodos[foundedIndex] = Object.assign({},newTodos[foundedIndex],updateObj)
         
-        // ...newTodos[foundedIndex] === {id:1, task : "AAA",status:false : due_date: "2023-04-29"}
-        // 
-        // { "id": 4, "task": "In congue. Etiam justo.", "status": false, "due_date": "2023-05-04" },
+        // console.log(newTodos[foundedIndex])
         setTodos(newTodos)
+        setFilterList(newTodos)
     }
 
     const handleDelete = (todoId) => {
