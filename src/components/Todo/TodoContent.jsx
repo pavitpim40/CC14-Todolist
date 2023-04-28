@@ -7,9 +7,6 @@ import { TodoLists } from './TodoLists';
 export function TodoContent({todos,setTodos,setFilterList}) {
     // # Logic
 
-
-    
-
     // UPDATE-TODO
     // updateValue = {task: "Newtask", status : false}
     const handleEditTodo = (todoId,updateObj) => {
