@@ -34,6 +34,10 @@ function App() {
        
     },[])
 
+    useEffect(()=> {
+
+    })
+
     // ## LOGIC : FN ต่างๆ
     // Filter Todo
     const handleFilterLists = (index) => {
@@ -71,7 +75,7 @@ function App() {
         <div className='container'>
             <Header onSearchText={handleSearch}/>
             <Sidebar onSelectTab={handleFilterLists} />
-            <TodoContent todos={filterList} setTodos={setTodos} />
+            <TodoContent todos={filterList} setTodos={setTodos} setFilterList={setFilterList}/>
         </div>
     );
 }
