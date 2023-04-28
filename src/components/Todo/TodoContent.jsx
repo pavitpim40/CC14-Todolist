@@ -11,6 +11,7 @@ export function TodoContent({todos,setTodos,setFilterList}) {
     // updateValue = {task: "Newtask", status : false}
     const handleEditTodo = (todoId,updateObj) => {
 
+        
         console.log(todoId)
         const foundedIndex = todos.findIndex(todoObj=> todoObj.id === todoId)
         console.log(foundedIndex)
@@ -25,10 +26,11 @@ export function TodoContent({todos,setTodos,setFilterList}) {
         setFilterList(newTodos)
     }
 
+    // Delete UI 
     const handleDelete = (todoId) => {
-
         // #2
         setTodos(curr=> curr.filter((todoObj)=> todoObj.id !== todoId))
+        setFilterList(curr=> curr.filter((todoObj)=> todoObj.id !== todoId))
     }
  
 
