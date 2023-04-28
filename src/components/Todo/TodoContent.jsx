@@ -35,15 +35,6 @@ export function TodoContent({todos,setTodos,setFilterList}) {
 
     const handleDelete = (todoId) => {
 
-        // Logic : Manipulate Array
-
-        // #1
-        // const foundedIndex = todos.findIndex(todoObj => todoObj.id === todoId)
-        // if(foundedIndex == -1) return;
-        // const newTodos = [...todos]
-        // newTodos.splice(foundedIndex,1)
-        // setTodos(newTodos)
-
         // #2
         setTodos(curr=> curr.filter((todoObj)=> todoObj.id !== todoId))
     }

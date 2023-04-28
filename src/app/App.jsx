@@ -34,11 +34,10 @@ function App() {
        
     },[])
 
-    useEffect(()=> {
-
-    })
+   
 
     // ## LOGIC : FN ต่างๆ
+    // Add todo 
     // Filter Todo
     const handleFilterLists = (index) => {
         const [nowStr, nextSevenStr] = getSevenDayRange();
